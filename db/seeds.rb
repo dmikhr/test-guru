@@ -67,7 +67,7 @@ users = User.create(
   ]
   )
 
-takentests = Takentest.create(
+takentests = PassedTest.create(
   [
     {user_id: 1, test_id: 1},
     {user_id: 1, test_id: 2},
