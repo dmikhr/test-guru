@@ -9,23 +9,33 @@
 # категории названы по-английски для удобства отладки метода
 # Test.tests_by_category_desc(category)
 # т.к. консоль Rails кириллический ввод не принимает
-categories = Category.create(
+Category.create(
   [
     {title: 'English' },
     {title: 'OBZ' }
   ]
   )
 
-tests = Test.create(
+User.create(
   [
-    {title: 'Английский уровень Beginner' , level: 0, category_id: 1},
-    {title: 'Английский уровень Pre-Intermediate' , level: 1, category_id: 1},
-    {title: 'Основы ОБЖ' , level: 0, category_id: 2},
-    {title: 'ОБЖ для специалистов' , level: 1, category_id: 2}
+    {login: 'alexe' , password: 'pass1234', email: 'egorov@testmail.com' ,name: 'Алексей Егоров' , role: 'студент'},
+    {login: 'oksanb' , password: 'pass2345', email: 'bogdanova@testmail.com'  , name: 'Оксана Богданова', role: 'студент'},
+    {login: 'kirillov' , password: 'pass5678', email: 'kirillov@testmail.com'  , name: 'Евгений Кириллов', role: 'студент'},
+    {login: 'maksimivaob' , password: 'pass3456', email: 'maksimova@testmail.com', name: 'Максимова Ольга Витальевна' , role: 'преподаватель'},
+    {login: 'petrov' , password: 'pass9876', email: 'petrov@testmail.com'  , name: 'Петров Олег Евгеньевич', role: 'преподаватель'},
   ]
   )
 
-questions = Question.create(
+Test.create(
+  [
+    {title: 'Английский уровень Beginner' , level: 0, category_id: 1, creator_id: 4},
+    {title: 'Английский уровень Pre-Intermediate' , level: 1, category_id: 1, creator_id: 4},
+    {title: 'Основы ОБЖ' , level: 0, category_id: 2, creator_id: 5},
+    {title: 'ОБЖ для специалистов' , level: 1, category_id: 2, creator_id: 5}
+  ]
+  )
+
+Question.create(
   [
     {body: 'Choose the correct word: He was so tired that he ... asleep in the chair' , test_id: 1},
     {body: 'Choose the correct word: Our company is a small organization with only a few ... ' , test_id: 1},
@@ -38,7 +48,7 @@ questions = Question.create(
   ]
   )
 
-answers = Answer.create(
+Answer.create(
   [
     {correct: true, body: 'fell' , question_id: 1},
     {correct: false, body: 'went' , question_id: 1},
@@ -58,16 +68,7 @@ answers = Answer.create(
   ]
   )
 
-users = User.create(
-  [
-    {login: 'alexe' , password: 'pass1234', email: 'egorov@testmail.com' ,name: 'Алексей Егоров' , role: 'студент'},
-    {login: 'oksanb' , password: 'pass2345', email: 'bogdanova@testmail.com'  , name: 'Оксана Богданова', role: 'студент'},
-    {login: 'kirillov' , password: 'pass5678', email: 'kirillov@testmail.com'  , name: 'Евгений Кириллов', role: 'студент'},
-    {login: 'maksimivaob' , password: 'pass3456', email: 'maksimova@testmail.com', name: 'Максимова Ольга Витальевна' , role: 'преподаватель'}
-  ]
-  )
-
-passedtests = PassedTest.create(
+PassedTest.create(
   [
     {user_id: 1, test_id: 1},
     {user_id: 1, test_id: 2},

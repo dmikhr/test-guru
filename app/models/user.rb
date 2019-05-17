@@ -1,12 +1,13 @@
 class User < ApplicationRecord
-  # возвращает список всех Тестов, которые проходит или когда-либо
-  # проходил Пользователь на этом уровне сложности
+  has_many :passed_tests
+  has_many :tests, through: :passed_tests
+  # доступ к тестам, созданным пользователем через user.tests_created
+  # тесты относятся к классу Test, связь через внешний ключ creator_id
+  has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
+
   def passed_tests_by_level(level)
-    # список test_id которые проходил пользователь
-    test_ids = PassedTest.where(user_id: self.id).pluck(:test_id)
-    # получаем тесты по списку test_id
-    tests = Test.where(id: test_ids)
-    # выбираем тесты с заданным level
+    # за счет ассоциаций tests содержат только тесты данного пользователя
+    # можно сократить код до
     tests.where(level: level).pluck(:title)
   end
 end
