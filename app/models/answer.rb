@@ -10,7 +10,7 @@ class Answer < ApplicationRecord
 
   def validate_answers_limit
     # если уже есть 4 вопроса, то answer не добавлять
-    errors.add(:question) if question.answers.size == 4
+    errors.add(:question) if question.answers.size >= 4
   end
 
 end
