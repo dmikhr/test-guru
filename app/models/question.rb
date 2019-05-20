@@ -10,7 +10,7 @@ class Question < ApplicationRecord
   private
 
   def validate_answers_range
-    errors.add(:answers) if answers.size.between?(1, 4)
+    errors.add(:answers) unless answers.size.between?(1, 4)
   end
 
 end
