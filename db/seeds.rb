@@ -9,10 +9,13 @@
 # категории названы по-английски для удобства отладки метода
 # Test.tests_by_category_desc(category)
 # т.к. консоль Rails кириллический ввод не принимает
+# добавил больше категорий для тестирования scope-метода соритровки категорий
 Category.create(
   [
     {title: 'English' },
-    {title: 'OBZ' }
+    {title: 'OBZ' },
+    {title: 'Computer Science'},
+    {title: 'Physics'}
   ]
   )
 
@@ -26,12 +29,17 @@ User.create(
   ]
   )
 
+# добавил больше тестов для тестирования scope-методов выбора тестов по сложности
 Test.create(
   [
     {title: 'Английский уровень Beginner' , level: 0, category_id: 1, creator_id: 4},
     {title: 'Английский уровень Pre-Intermediate' , level: 1, category_id: 1, creator_id: 4},
     {title: 'Основы ОБЖ' , level: 0, category_id: 2, creator_id: 5},
-    {title: 'ОБЖ для специалистов' , level: 1, category_id: 2, creator_id: 5}
+    {title: 'ОБЖ для специалистов' , level: 1, category_id: 2, creator_id: 5},
+    {title: 'Теория алгоритмов' , level: 2, category_id: 3, creator_id: 5},
+    {title: 'Цифровая обработка сигналов' , level: 4, category_id: 3, creator_id: 5},
+    {title: 'Механика сплошных сред' , level: 7, category_id: 4, creator_id: 5},
+    {title: 'Квантовая физика' , level: 10, category_id: 4, creator_id: 5}
   ]
   )
 
