@@ -31,14 +31,14 @@ class QuestionsController < ApplicationController
   # обработка POST запроса от формы
   # создание вопроса
   def create
-    q = Question.create(question_params)
-    #render plain: q.inspect
-    render plain: 'Вопрос создан'
+    question = Question.create(question_params)
+    #render plain: question.inspect
+    render plain: "Вопрос создан: '#{question.body}'"
   end
 
   # удаление вопроса
   def destroy
-    Test.find(params[:test_id]).questions.find(params[:id]).destroy
+    Question.find(params[:id]).destroy
     render plain: 'Вопрос удален'
   end
 
