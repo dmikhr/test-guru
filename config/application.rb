@@ -20,6 +20,7 @@ module TestGuru
     # язык
     # задаем :ru вместо стандартного ru-RU согласно pragmatic approach
     # https://guides.rubyonrails.org/i18n.html
+    config.i18n.available_locales = :ru
     config.i18n.default_locale = :ru
 
     # Settings in config/environments/* take precedence over those specified here.
