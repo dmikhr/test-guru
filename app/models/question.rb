@@ -5,7 +5,10 @@ class Question < ApplicationRecord
   validates :body, presence: true
 
   # У одного вопроса может быть от 1-го до 4-х ответов
-  validate :validate_answers_range
+  # добавил условие on: :update
+  # иначе при создании нового вопроса он не пройдет валидацию
+  # т.к. у нового вопроса изначально 0 ответов
+  validate :validate_answers_range, on: :update
 
   private
 
