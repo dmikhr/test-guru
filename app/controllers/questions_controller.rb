@@ -66,12 +66,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    # изначально форма передает параметры в таком виде
-    # Parameters: {"authenticity_token"=>"u7ogzGdwf7z7YF1bVdjKuZxjSh63hkKI664nZB2Ee4y5rfcSbSCU8O94odwC1rrFiJxMwXyaAapBioCBAy0TCQ==", "question"=>{"body"=>"wertyu"}, "Create"=>"Submit Query", "test_id"=>"2"}
-    # насколько я понял params.require предназначен для ограничения вложенных параметров, при этом test_id вложенных параметров не имеет
-    # соответственно перенес test_id во вложенный хеш questions через hidden поле в new.html.erb
-    # теперь параметры выглядят так
-    # Parameters: {"authenticity_token"=>"u7ogzGdwf7z7YF1bVdjKuZxjSh63hkKI664nZB2Ee4y5rfcSbSCU8O94odwC1rrFiJxMwXyaAapBioCBAy0TCQ==", "question"=>{"test_id"=>"2", "body"=>"wertyu"}, "Create"=>"Submit Query", "test_id"=>"2"}
     params.require(:question).permit(:body, :test_id)
   end
 

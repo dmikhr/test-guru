@@ -6,16 +6,12 @@ class TestsController < ApplicationController
   # все тесты
   def index
     @tests = Test.all
-    #titles = []
-    #tests.each { |test| titles.push(test.title) }
-    #render plain: titles.join("\n")
   end
 
   # Просмотр конкретного теста
   def show
     @test = Test.find(params[:id])
     @questions = Test.find(params[:id]).questions
-    #render plain: "Тест: '#{Test.find(params[:id]).title}'"
   end
 
   # Вызов формы редактирования вопроса
