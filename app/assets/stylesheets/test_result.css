@@ -1,0 +1,9 @@
+mark.success {
+  color: green;
+  background: none;
+  }
+
+mark.fail {
+  color: red;
+  background: none;
+  }

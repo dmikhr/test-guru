@@ -1,10 +1,6 @@
 class QuestionsController < ApplicationController
   # обратный вызов при поиске теста
-  before_action :find_test
-  # отключаем CSRF для экшена destroy, чтобы протестировать DELETE запрос через curl
-  # например: curl -i -X DELETE http://localhost:3000/tests/4/questions/9
-  # https://stackoverflow.com/questions/5669322/turn-off-csrf-token-in-rails-3
-  # skip_before_action :verify_authenticity_token, :only => [:destroy]
+  before_action :find_test, only: %i[new create]
 
   # обработка исключения для случая когда вопрос не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
@@ -19,13 +15,12 @@ class QuestionsController < ApplicationController
 
   # Просмотр конкретного вопроса теста
   def show
-    question_body = @test.questions.find(params[:id]).body
-    render plain: "Вопрос из теста '#{@test.title}:'\n#{question_body}"
+    @question = Question.find(params[:id])
   end
 
   # Вызов формы редактирования вопроса
   def edit
-    # чтобы поля были заполнены
+    # чтобы поле в форме было заполнено
     @question = Question.find(params[:id])
   end
 
@@ -34,7 +29,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)
-      redirect_to url_for(@test)
+      redirect_to test_path(@question.test)
     else
       render :edit
     end
@@ -42,15 +37,15 @@ class QuestionsController < ApplicationController
 
   # Вызов формы создания вопроса
   def new
-    @question = Question.new
+    @question = @test.questions.new
   end
 
   # обработка POST запроса от формы создания вопроса
   # создание вопроса
   def create
-    @question = Question.new(question_params)
+    @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to url_for(@test)
+      redirect_to test_path(@test)
     else
       render :new
     end
@@ -60,7 +55,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
-    redirect_to url_for(@test)
+    redirect_to test_path(@question.test)
   end
 
   private

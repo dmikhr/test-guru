@@ -6,16 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# категории названы по-английски для удобства отладки метода
-# Test.tests_by_category_desc(category)
-# т.к. консоль Rails кириллический ввод не принимает
-# добавил больше категорий для тестирования scope-метода соритровки категорий
 Category.create(
   [
-    {title: 'English' },
-    {title: 'OBZ' },
-    {title: 'Computer Science'},
-    {title: 'Physics'}
+    {title: 'Английский' },
+    {title: 'География' },
+    {title: 'Информатика'},
+    {title: 'Физика'}
   ]
   )
 
@@ -32,14 +28,14 @@ User.create(
 # добавил больше тестов для тестирования scope-методов выбора тестов по сложности
 Test.create(
   [
-    {title: 'Английский уровень Beginner' , level: 0, category_id: 1, creator_id: 4},
-    {title: 'Английский уровень Pre-Intermediate' , level: 1, category_id: 1, creator_id: 4},
-    {title: 'Основы ОБЖ' , level: 0, category_id: 2, creator_id: 5},
-    {title: 'ОБЖ для специалистов' , level: 1, category_id: 2, creator_id: 5},
+    {title: 'Английский уровень Beginner', level: 0, category_id: 1, creator_id: 4},
+    {title: 'Английский уровень Pre-Intermediate', level: 1, category_id: 1, creator_id: 4},
+    {title: 'География для школьников', level: 0, category_id: 2, creator_id: 5},
+    {title: 'География для студентов ВУЗов', level: 3, category_id: 2, creator_id: 5},
     {title: 'Теория алгоритмов' , level: 2, category_id: 3, creator_id: 5},
-    {title: 'Цифровая обработка сигналов' , level: 4, category_id: 3, creator_id: 5},
-    {title: 'Механика сплошных сред' , level: 7, category_id: 4, creator_id: 5},
-    {title: 'Квантовая физика' , level: 10, category_id: 4, creator_id: 5}
+    {title: 'Цифровая обработка сигналов', level: 4, category_id: 3, creator_id: 5},
+    {title: 'Механика сплошных сред', level: 7, category_id: 4, creator_id: 5},
+    {title: 'Квантовая физика', level: 10, category_id: 4, creator_id: 5}
   ]
   )
 
@@ -49,10 +45,10 @@ Question.create(
     {body: 'Choose the correct word: Our company is a small organization with only a few ... ' , test_id: 1},
     {body: 'Choose the correct word: Before we start the lesson, I`d like to ... what we did yesterday' , test_id: 2},
     {body: 'Choose the correct word: In order to ... with his studies he worked through the summer' , test_id: 2},
-    {body: 'Choose the correct word: Before we start the lesson, I`d like to ... what we did yesterday' , test_id: 2},
-    {body: 'Правильно ли названы виды лесных пожаров: низовой, верховой, торфяной' , test_id: 3},
-    {body: 'Укажите крутизну склона, при которой возникает наиболее вероятная ситуация схода лавин' , test_id: 4},
-    {body: 'Укажите бальность очень сильного землетрясения' , test_id: 4}
+    {body: 'Столица Непала', test_id: 3},
+    {body: 'Выберите островные государства' , test_id: 4},
+    {body: 'Какие из представленных стран находятся в Южной Америке?' , test_id: 4},
+    {body: 'Выберите города, находящиеся на Европейском континенте' , test_id: 4}
   ]
   )
 
@@ -62,27 +58,23 @@ Answer.create(
     {correct: false, body: 'went' , question_id: 1},
     {correct: false, body: 'employerers' , question_id: 2},
     {correct: true, body: 'employees' , question_id: 2},
+    {correct: false, body: 'jobbers' , question_id: 2},
     {correct: false, body: 'run along' , question_id: 3},
     {correct: true, body: 'run through' , question_id: 3},
     {correct: false, body: 'take up' , question_id: 4},
     {correct: true, body: 'catch up' , question_id: 4},
-    {correct: false, body: 'один лишний' , question_id: 5},
-    {correct: true, body: 'да' , question_id: 5},
-    {correct: false, body: '45-50' , question_id: 6},
-    {correct: false, body: 'более 50' , question_id: 6},
-    {correct: true, body: '30-40' , question_id: 6},
-    {correct: true, body: '6 баллов' , question_id: 7},
-    {correct: false, body: '3 балла' , question_id: 7}
-  ]
-  )
-
-PassedTest.create(
-  [
-    {user_id: 1, test_id: 1},
-    {user_id: 1, test_id: 2},
-    {user_id: 1, test_id: 4},
-    {user_id: 2, test_id: 2},
-    {user_id: 2, test_id: 4},
-    {user_id: 3, test_id: 1}
+    {correct: false, body: 'Мумбаи' , question_id: 5},
+    {correct: true, body: 'Катманду' , question_id: 5},
+    {correct: false, body: 'Севилья' , question_id: 5},
+    {correct: true, body: 'Гонконг' , question_id: 6},
+    {correct: false, body: 'Дания' , question_id: 6},
+    {correct: true, body: 'Сингапур' , question_id: 6},
+    {correct: true, body: 'Шри-Ланка' , question_id: 6},
+    {correct: false, body: 'Мексика' , question_id: 7},
+    {correct: true, body: 'Уругвай' , question_id: 7},
+    {correct: true, body: 'Чили' , question_id: 7},
+    {correct: true, body: 'Копенгаген' , question_id: 8},
+    {correct: true, body: 'Москва' , question_id: 8},
+    {correct: false, body: 'Токио' , question_id: 8}
   ]
   )

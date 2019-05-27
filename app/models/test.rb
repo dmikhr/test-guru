@@ -1,8 +1,10 @@
 class Test < ApplicationRecord
   belongs_to :category
   has_many :questions
-  has_many :passed_tests
-  has_many :users, through: :passed_tests
+  #has_many :passed_tests
+  #has_many :users, through: :passed_tests
+  has_many :test_passages
+  has_many :users, through: :test_passages
   # вывод объекта User автора теста test.creator
   # автор - это класс User, связь через внешний ключ creator_id
   belongs_to :creator, class_name: 'User', foreign_key: :creator_id

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  has_many :passed_tests
-  has_many :tests, through: :passed_tests
+  #has_many :passed_tests
+  #has_many :tests, through: :passed_tests
+  has_many :test_passages
+  has_many :tests, through: :test_passages
   # доступ к тестам, созданным пользователем через user.tests_created
   # тесты относятся к классу Test, связь через внешний ключ creator_id
   has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
@@ -19,4 +21,10 @@ class User < ApplicationRecord
     # можно сократить код до
     tests.where(level: level).pluck(:title)
   end
+
+  def test_passage(test)
+    # сортировка по убыванию - чтобы получить последний пройденный тест (если один тест проходился несколько раз)
+    test_passages.order(id: :desc).find_by(test_id: test.id)
+  end
+
 end

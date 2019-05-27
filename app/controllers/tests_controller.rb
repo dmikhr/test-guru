@@ -1,5 +1,8 @@
 class TestsController < ApplicationController
 
+  before_action :set_test, only: %i[show edit update destroy start]
+  before_action :set_user, only: :start
+
   # обработка исключения для случая когда тест не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
@@ -10,20 +13,17 @@ class TestsController < ApplicationController
 
   # Просмотр конкретного теста
   def show
-    @test = Test.find(params[:id])
     @questions = Test.find(params[:id]).questions
   end
 
   # Вызов формы редактирования вопроса
   def edit
-    # чтобы поля были заполнены
-    @test = Test.find(params[:id])
+
   end
 
   # обработка PATCH запроса от формы редактирования вопроса
   # редактирование вопроса
   def update
-    @test = Test.find(params[:id])
     if @test.update(test_params)
       redirect_to tests_path
     else
@@ -49,15 +49,29 @@ class TestsController < ApplicationController
 
   # удаление теста
   def destroy
-    @test = Test.find(params[:id])
     @test.destroy
     redirect_to tests_path
+  end
+
+  def start
+    # добавить тест пользователю
+    @user.tests.push(@test)
+    # перенаправление на ресур прохождения теста
+    redirect_to @user.test_passage(@test)
   end
 
   private
 
   def test_params
     params.require(:test).permit(:title, :level, :category_id, :creator_id)
+  end
+
+  def set_test
+    @test = Test.find(params[:id])
+  end
+
+  def set_user
+    @user = User.first
   end
 
   def rescue_with_test_not_found
