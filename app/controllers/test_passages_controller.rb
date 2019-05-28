@@ -5,14 +5,10 @@ class TestPassagesController < ApplicationController
   before_action :set_test_passage, only: %i[show update result]
 
   # форма выбора ответов к текущему вопросу
-  def show
-
-  end
+  def show; end
 
   # результат прохождения теста
-  def result
-
-  end
+  def result; end
 
   # сохранение информации о прохождении вопроса
   def update
@@ -21,7 +17,7 @@ class TestPassagesController < ApplicationController
       redirect_to result_test_passage_path(@test_passage)
     else
       # когда пользователь нажимает 'далее' - заново рендерим форму теста
-      # с новым тестом
+      # с новым вопросом
       render :show
     end
   end

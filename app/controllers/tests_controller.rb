@@ -13,13 +13,11 @@ class TestsController < ApplicationController
 
   # Просмотр конкретного теста
   def show
-    @questions = Test.find(params[:id]).questions
+    @questions = @test.questions
   end
 
   # Вызов формы редактирования вопроса
-  def edit
-
-  end
+  def edit; end
 
   # обработка PATCH запроса от формы редактирования вопроса
   # редактирование вопроса

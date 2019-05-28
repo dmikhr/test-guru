@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   # обратный вызов при поиске теста
-  before_action :find_test, only: %i[new create]
+  before_action :set_test, only: %i[new create]
+  before_action :set_question, only: %i[show edit update destroy]
 
   # обработка исключения для случая когда вопрос не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
@@ -14,20 +15,14 @@ class QuestionsController < ApplicationController
   end
 
   # Просмотр конкретного вопроса теста
-  def show
-    @question = Question.find(params[:id])
-  end
+  def show; end
 
   # Вызов формы редактирования вопроса
-  def edit
-    # чтобы поле в форме было заполнено
-    @question = Question.find(params[:id])
-  end
+  def edit; end
 
   # обработка PATCH запроса от формы редактирования вопроса
   # редактирование вопроса
   def update
-    @question = Question.find(params[:id])
     if @question.update(question_params)
       redirect_to test_path(@question.test)
     else
@@ -53,7 +48,6 @@ class QuestionsController < ApplicationController
 
   # удаление вопроса
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     redirect_to test_path(@question.test)
   end
@@ -64,12 +58,12 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:body, :test_id)
   end
 
-  def question_edit_params
-    params.require(:question).permit(:body, :id, :test_id)
+  def set_test
+    @test = Test.find(params[:test_id])
   end
 
-  def find_test
-    @test = Test.find(params[:test_id])
+  def set_question
+    @question = Question.find(params[:id])
   end
 
   def rescue_with_question_not_found

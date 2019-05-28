@@ -12,6 +12,6 @@
   <% end %>
   <p><%= form.submit 'Далее' %></p>
   <p>Вопрос <%= @test_passage.current_question_num %> из <%= @test_passage.total_questions_in_test %></p>
-  <p>Прогресс:<br><%= @test_passage.show_progress_bar %></p>
+  <%= render 'progress_bar' %>
 <% end %>
 <p><%= link_to 'Вернуться к списку тестов', tests_path %></p>
