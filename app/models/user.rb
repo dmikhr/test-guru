@@ -10,7 +10,7 @@ class User < ApplicationRecord
   def passed_tests_by_level(level)
     # за счет ассоциаций tests содержат только тесты данного пользователя
     # можно сократить код до
-    tests.where(level: level).pluck(:title)
+    tests.where(level: level)
   end
 
   def test_passage(test)
