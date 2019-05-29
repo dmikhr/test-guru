@@ -1,5 +1,5 @@
 <tr>
-  <td><%= question.body %></td>
-  <td><%= link_to 'Изменить', "#{url_for([@test, question])}/edit" %></td>
-  <td><%= link_to 'Удалить', url_for([@test, question]), method: :delete, data: {confirm: "Удалить вопрос?"} %></td>
+  <td><%= link_to question.body, url_for(question) %></td>
+  <td><%= link_to 'Изменить', "#{url_for(question)}/edit" %></td>
+  <td><%= link_to 'Удалить', url_for(question), method: :delete, data: {confirm: "Удалить вопрос?"} %></td>
 </tr>
