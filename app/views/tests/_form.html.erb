@@ -2,8 +2,7 @@
 
 <%= form_with model: @test, local: true do |form| %>
 <%= render 'shared/display_errors', resource: @test  %>
-<%# пока авторизация не реализована, передаем creator_id в скрытом поле %>
-<%= form.hidden_field :creator_id, :value => "1" %>
+<%= form.hidden_field :creator_id, :value => current_user.id %>
 <div>
   <%= form.label :title %><br>
   <%# при создании нового теста value будет пустым, при редактирование будет текущее значение %>

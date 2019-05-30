@@ -1,5 +1,8 @@
 class TestsController < ApplicationController
 
+  # authenticate_user! идет первый, т.к. коллбэки исполняются последовательно
+  # и если пользователь не залогинен, остальные коллбэки запускать нет смысла (прим. из скринкаста)
+  before_action :authenticate_user!
   before_action :set_test, only: %i[show edit update destroy start]
   before_action :set_user, only: :start
 
@@ -52,10 +55,10 @@ class TestsController < ApplicationController
   end
 
   def start
-    # добавить тест пользователю
-    @user.tests.push(@test)
+    # объект текущего пользователя при старте прохождения теста
+    current_user.tests.push(@test)
     # перенаправление на ресур прохождения теста
-    redirect_to @user.test_passage(@test)
+    redirect_to current_user.test_passage(@test)
   end
 
   private

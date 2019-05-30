@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+  get 'users/new'
+
   resources :answers
+
   root to: 'tests#index'
+
+  get :signup, to: 'users#new'
+  get :login, to: 'sessions#new'
+  get :logout, to: 'sessions#destroy'
+
+  resources :users, only: :create
+  resources :sessions, only: :create
 
   resources :tests do
     resources :questions, shallow: true, except: :index do
@@ -20,10 +31,4 @@ Rails.application.routes.draw do
     end
   end
 
-  # ресурс Вопросов, вложенный в ресурс Тестов
-  #resources :tests do
-  #  resources :questions do
-  #    resources :answers, shallow: true
-  #  end
-  #end
 end
