@@ -4,7 +4,6 @@ class TestsController < ApplicationController
   # и если пользователь не залогинен, остальные коллбэки запускать нет смысла (прим. из скринкаста)
   before_action :authenticate_user!
   before_action :set_test, only: %i[show edit update destroy start]
-  before_action :set_user, only: :start
 
   # обработка исключения для случая когда тест не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -69,10 +68,6 @@ class TestsController < ApplicationController
 
   def set_test
     @test = Test.find(params[:id])
-  end
-
-  def set_user
-    @user = User.first
   end
 
   def rescue_with_test_not_found

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       # если пользователь не залогинен сохраняем в куку путь, куда он хотел попасть
       # и отправляем на страницу логина
       cookies[:path] = request.original_url
-      redirect_to login_path, alert: 'Login error'
+      redirect_to login_path, alert: 'Войдите в аккаунт для доступа к TestGuru'
     end
   end
 

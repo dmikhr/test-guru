@@ -9,8 +9,9 @@ module ApplicationHelper
   end
 
   # хэлпер для flash сообщений
-  def show_flash_message
-    content_tag :p, flash[:alert], class: 'flash alert'
+  def show_flash_message(type)
+    css_style = { alert: 'flash alert', notice: 'flash notice'}
+    content_tag :p, flash[type], class: css_style[type]
   end
 
 end

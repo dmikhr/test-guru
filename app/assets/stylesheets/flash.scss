@@ -4,6 +4,10 @@
   border-radius: 5px;
 }
 
-.flash-alert {
-  border-color: #ef2727;
+.flash.notice {
+  border-color: green;
+}
+
+.flash.alert {
+  border-color: blue;
 }
