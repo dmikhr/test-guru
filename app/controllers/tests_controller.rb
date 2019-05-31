@@ -1,8 +1,5 @@
 class TestsController < ApplicationController
 
-  # authenticate_user! идет первый, т.к. коллбэки исполняются последовательно
-  # и если пользователь не залогинен, остальные коллбэки запускать нет смысла (прим. из скринкаста)
-  before_action :authenticate_user!
   before_action :set_test, only: %i[show edit update destroy start]
 
   # обработка исключения для случая когда тест не был найден

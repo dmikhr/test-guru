@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!
   def new
     if logged_in?
       redirect_to root_path

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-
+  # убираем проверку на аутентификацию для new и create, а для выполнения destroy пользователь должен быть залогинен
+  skip_before_action :authenticate_user!, only: %i[new create]
   # отображение формы логина
   def new
     # если пользователь залогинен и зашел на старинцу логина, перенаправить его на главную страницу
@@ -30,12 +31,7 @@ class SessionsController < ApplicationController
   def redirect_user_to_intended_page
     # отправляем пользователя после логина на страницу
     # куда он хотел попасть на основе данных из куки
-    if cookies[:path].nil?
-      redirect_to root_path
-    else
-      redirect_to cookies[:path]
-      cookies.delete(:path)
-    end
+    redirect_to cookies.delete(:path) || root_path
   end
 
 end

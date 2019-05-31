@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
 
-  before_action :authenticate_user!
   # загрузка ресурса вопроса
   before_action :set_question, only: %i[new create]
   before_action :set_answer, only: %i[show edit update destroy]
