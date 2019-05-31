@@ -1,0 +1,8 @@
+<tr>
+  <td><%= link_to test.title, admin_test_path(test) %></td>
+  <td><%= test.category.title %></td>
+  <td><%= test.level %></td>
+  <td><%= test.questions.size %></td>
+  <td><%= link_to 'Изменить', edit_admin_test_path(test) %></td>
+  <td><%= link_to 'Удалить', admin_test_path(test), method: :delete, data: {confirm: "Удалить тест #{test.title}?"} %></td>
+</tr>

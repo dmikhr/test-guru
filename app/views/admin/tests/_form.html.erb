@@ -1,0 +1,25 @@
+<h3><%= test_header %></h3>
+
+<%= form_with model: [:admin, @test], local: true do |form| %>
+<%= render 'shared/display_errors', resource: @test  %>
+<%# Админинстратор назначается автором теста - передаем id админа в качестве creator_id %>
+<%= form.hidden_field :creator_id, :value => current_user.id %>
+<div>
+  <%= form.label :title %><br>
+  <%# при создании нового теста value будет пустым, при редактирование будет текущее значение %>
+  <%= form.text_field :title, value: @test.title %>
+</div>
+
+<div>
+  <%= form.label :level %><br>
+  <%= form.number_field :level, value: @test.level %>
+</div>
+
+<div>
+  <%= form.label :category_id %><br>
+  <%= form.collection_select :category_id, Category.all, :id, :title, prompt: 'Выберите категорию' %>
+</div>
+
+<p><%= form.submit %></p>
+<% end %>
+<p><%= link_to 'Назад', admin_tests_path %></p>
