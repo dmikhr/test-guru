@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <h1><%= link_to 'Проект TestGuru', root_path %></h1>
+    <% if logged_in? %>
+      <p class="nav user">Welcome, <b><%= current_user.name %></b> Guru
+        | <%= link_to 'Выйти', logout_path, method: :delete %>
+      </p>
+    <% else %>
+    <p class="nav user"><%= link_to 'Войти', login_path %> |  <%= link_to 'Регистрация', signup_path %></p>
+    <% end %>
     <%= yield %>
     <%= render "shared/footer" %>
   </body>

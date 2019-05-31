@@ -1,5 +1,4 @@
 class TestPassagesController < ApplicationController
-
   # лучше перечислить экшены, для которых действует коллбэк
   # чтобы в случае добавления новых экшенов коллбэк не распространился на них
   before_action :set_test_passage, only: %i[show update result]

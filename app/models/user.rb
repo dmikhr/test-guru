@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class User < ApplicationRecord
   has_many :test_passages, dependent: :destroy
   has_many :tests, through: :test_passages
@@ -5,7 +7,11 @@ class User < ApplicationRecord
   # тесты относятся к классу Test, связь через внешний ключ creator_id
   has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
 
-  validates :login, :password, :email, presence: true
+  validates :password, :email, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  has_secure_password
 
   def passed_tests_by_level(level)
     # за счет ассоциаций tests содержат только тесты данного пользователя

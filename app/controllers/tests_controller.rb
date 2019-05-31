@@ -1,7 +1,6 @@
 class TestsController < ApplicationController
 
   before_action :set_test, only: %i[show edit update destroy start]
-  before_action :set_user, only: :start
 
   # обработка исключения для случая когда тест не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -52,10 +51,10 @@ class TestsController < ApplicationController
   end
 
   def start
-    # добавить тест пользователю
-    @user.tests.push(@test)
+    # объект текущего пользователя при старте прохождения теста
+    current_user.tests.push(@test)
     # перенаправление на ресур прохождения теста
-    redirect_to @user.test_passage(@test)
+    redirect_to current_user.test_passage(@test)
   end
 
   private
@@ -66,10 +65,6 @@ class TestsController < ApplicationController
 
   def set_test
     @test = Test.find(params[:id])
-  end
-
-  def set_user
-    @user = User.first
   end
 
   def rescue_with_test_not_found
