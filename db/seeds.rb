@@ -15,15 +15,15 @@ categories = Category.create!(
   ]
   )
 
-users = User.create!(
-  [
-    {login: 'alexe', password: 'pass1234', email: 'egorov@testmail.com' ,name: 'Алексей Егоров', role: 'студент'},
-    {login: 'oksanb', password: 'pass2345', email: 'bogdanova@testmail.com' , name: 'Оксана Богданова', role: 'студент'},
-    {login: 'kirillov', password: 'pass5678', email: 'kirillov@testmail.com' , name: 'Евгений Кириллов', role: 'студент'},
-    {login: 'maksimivaob', password: 'pass3456', email: 'maksimova@testmail.com', name: 'Максимова Ольга Витальевна', role: 'преподаватель'},
-    {login: 'petrov', password: 'pass9876', email: 'petrov@testmail.com' , name: 'Петров Олег Евгеньевич', role: 'преподаватель'},
-  ]
-  )
+  users = User.create!(
+    [
+      {login: 'alexe', password: 'pass1234', password_confirmation: 'pass1234', email: 'egorov@testmail.com' ,first_name: 'Алексей', last_name: 'Егоров', type: 'User'},
+      {login: 'oksanb', password: 'pass2345', password_confirmation: 'pass2345', email: 'bogdanova@testmail.com', first_name: 'Оксана', last_name: 'Белова', type: 'User'},
+      {login: 'serg', password: 'pass2345', password_confirmation: 'pass2345', email: 'serg@testmail.com', first_name: 'Сергей', last_name: 'Рожков', type: 'User'},
+      {login: 'petrov', password: 'pass9876', password_confirmation: 'pass9876', email: 'petrov@testmail.com' , first_name: 'Олег', last_name: 'Петров', type: 'Admin'},
+      {login: 'maksimova', password: 'pass9876', password_confirmation: 'pass9876', email: 'maksimova@testmail.com' , first_name: 'Ольга', last_name: 'Максимова', type: 'Admin'},
+    ]
+    )
 
 # добавил больше тестов для тестирования scope-методов выбора тестов по сложности
 tests = Test.create!(
