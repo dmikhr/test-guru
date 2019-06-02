@@ -13,7 +13,7 @@
     <h1><%= link_to 'Проект TestGuru', root_path %></h1>
     <% if user_signed_in? %>
       <p class="nav user">Welcome, <b><%= show_user_name %></b> Guru
-        <% if current_user.is_a?(Admin) %>
+        <% if current_user.admin? %>
         | <%= link_to 'Админка', admin_tests_path %>
        <% end %>
         | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>

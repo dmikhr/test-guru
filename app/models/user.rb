@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+
+  has_many :test_passages, dependent: :destroy
+  has_many :tests, through: :test_passages
+  # доступ к тестам, созданным пользователем через user.tests_created
+  # тесты относятся к классу Test, связь через внешний ключ creator_id
+  has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -9,16 +16,6 @@ class User < ApplicationRecord
           :validatable
           :confirmable
 
-  has_many :test_passages, dependent: :destroy
-  has_many :tests, through: :test_passages
-  # доступ к тестам, созданным пользователем через user.tests_created
-  # тесты относятся к классу Test, связь через внешний ключ creator_id
-  has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
-
-  validates :email, presence: true
-  validates :email, uniqueness: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-
   def passed_tests_by_level(level)
     # за счет ассоциаций tests содержат только тесты данного пользователя
     # можно сократить код до
@@ -28,6 +25,18 @@ class User < ApplicationRecord
   def test_passage(test)
     # сортировка по убыванию - чтобы получить последний пройденный тест (если один тест проходился несколько раз)
     test_passages.order(id: :desc).find_by(test: test)
+  end
+
+  def admin?
+    is_a?(Admin)
+  end
+
+  def full_name
+    unless first_name.nil? && last_name.nil?
+      "#{first_name} #{last_name}"
+    else
+      'Пользователь'
+    end
   end
 
 end

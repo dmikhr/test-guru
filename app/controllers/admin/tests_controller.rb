@@ -1,7 +1,7 @@
 # TestsController доступный только для Admin
 class Admin::TestsController < Admin::BaseController
 
-  before_action :set_test, only: %i[show edit update destroy start]
+  before_action :set_test, only: %i[show edit update destroy]
 
   # обработка исключения для случая когда тест не был найден
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -37,7 +37,10 @@ class Admin::TestsController < Admin::BaseController
   # обработка POST запроса от формы создания теста
   # создание теста
   def create
-    @test = Test.new(test_params)
+    # @test = Test.new(test_params)
+    # создаем тест на от класса Test, а через ассоциацию из модели User
+    # чтобы автоматически установилось авторство теста
+    @test = current_user.tests_created.new(test_params)
     if @test.save
       redirect_to admin_test_path(@test)
     else
@@ -51,17 +54,11 @@ class Admin::TestsController < Admin::BaseController
     redirect_to admin_tests_path(@test)
   end
 
-  def start
-    # объект текущего пользователя при старте прохождения теста
-    current_user.tests.push(@test)
-    # перенаправление на ресур прохождения теста
-    redirect_to current_user.test_passage(@test)
-  end
-
   private
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id, :creator_id)
+    # params.require(:test).permit(:title, :level, :category_id, :creator_id)
+    params.require(:test).permit(:title, :level, :category_id)
   end
 
   def set_test

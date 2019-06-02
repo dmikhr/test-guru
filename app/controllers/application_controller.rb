@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   # перенаправление администраторов на страницу /admin/tests после логина
   # https://www.rubydoc.info/github/plataformatec/devise/Devise/Controllers/Helpers:after_sign_in_path_for
   def after_sign_in_path_for(user)
-    # приветствуем пользователя после логина
-    flash[:alert] = "Привет, #{user.first_name} #{user.last_name}!" unless user.first_name.nil? && user.last_name.nil?
-    if user.is_a?(Admin)
+    if user.admin?
       admin_tests_path
     else
       super
