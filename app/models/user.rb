@@ -13,7 +13,7 @@ class User < ApplicationRecord
           :recoverable,
           :rememberable,
           :trackable,
-          :validatable
+          :validatable,
           :confirmable
 
   def passed_tests_by_level(level)
@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    unless first_name.nil? && last_name.nil?
+    if first_name.present? && last_name.present?
       "#{first_name} #{last_name}"
     else
       'Пользователь'
