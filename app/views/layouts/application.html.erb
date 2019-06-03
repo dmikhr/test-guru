@@ -11,13 +11,17 @@
 
   <body>
     <h1><%= link_to 'Проект TestGuru', root_path %></h1>
-    <% if logged_in? %>
-      <p class="nav user">Welcome, <b><%= current_user.name %></b> Guru
-        | <%= link_to 'Выйти', logout_path, method: :delete %>
+    <% if user_signed_in? %>
+      <p class="nav user">Welcome, <b><%= show_user_name %></b> Guru
+        <% if current_user.admin? %>
+        | <%= link_to 'Админка', admin_tests_path %>
+       <% end %>
+        | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
       </p>
     <% else %>
-    <p class="nav user"><%= link_to 'Войти', login_path %> |  <%= link_to 'Регистрация', signup_path %></p>
+    <p class="nav user"><%= link_to 'Войти', new_user_session_path %> |  <%= link_to 'Регистрация', new_user_registration_path %></p>
     <% end %>
+    <%= render 'shared/flash' %>
     <%= yield %>
     <%= render "shared/footer" %>
   </body>

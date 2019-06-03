@@ -1,37 +1,18 @@
-class SessionsController < ApplicationController
-  # убираем проверку на аутентификацию для new и create, а для выполнения destroy пользователь должен быть залогинен
-  skip_before_action :authenticate_user!, only: %i[new create]
-  # отображение формы логина
-  def new
-    # если пользователь залогинен и зашел на старинцу логина, перенаправить его на главную страницу
-    redirect_to root_path if logged_in?
-  end
+# "установку флеша надо делать там, где происходит логин пользователя - подумай какой контроллер за это отвечает"
 
-  # создание пользовательской сессии (логин)
+# здесь не уверен, что правильная реализация, но идея была следующая
+# в прошлом уроке за логин отвечал контроллер SessionsController
+# сейчас эту роль выполняет Devise, в нем за логин тоже отвечает одноименный контроллер
+# https://github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
+# за логин отвечает метод create, там же Devise выводит собственные флеш сообщения после логина
+# решение: переопределяем метод create, добавляя в конце наше flash сообщение
+
+# как переопределить SessionsController в Devise
+# https://stackoverflow.com/questions/13836139/rails-how-to-override-devise-sessionscontroller-to-perform-specific-tasks-when
+
+class SessionsController < Devise::SessionsController
   def create
-    user  = User.find_by(email: params[:email])
-    # если user == nil, то user&.authenticate тоже будет nil
-    if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_user_to_intended_page
-    else
-      # сообщение если пользователь не залогинен
-      flash.now[:alert] = 'Введите логин и пароль'
-      render :new
-    end
+    super
+    flash[:alert] = "Привет, #{current_user.full_name}!" unless current_user.admin?
   end
-
-  def destroy
-    reset_session
-    redirect_to login_path
-  end
-
-  private
-
-  def redirect_user_to_intended_page
-    # отправляем пользователя после логина на страницу
-    # куда он хотел попасть на основе данных из куки
-    redirect_to cookies.delete(:path) || root_path
-  end
-
 end

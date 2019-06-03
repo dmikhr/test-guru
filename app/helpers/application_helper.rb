@@ -14,4 +14,8 @@ module ApplicationHelper
     content_tag :p, flash[type], class: css_style[type]
   end
 
+  def show_user_name
+    "#{current_user.first_name} #{current_user.last_name}"
+  end
+
 end

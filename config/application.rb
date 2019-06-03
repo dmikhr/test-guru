@@ -20,8 +20,9 @@ module TestGuru
     # язык
     # задаем :ru вместо стандартного ru-RU согласно pragmatic approach
     # https://guides.rubyonrails.org/i18n.html
-    config.i18n.available_locales = :ru
-    config.i18n.default_locale = :ru
+    config.i18n.available_locales = [:ru, :en]
+    # сменил пока локаль на :en, чтобы могли выводиться стандартные flash сообщения от Devise
+    config.i18n.default_locale = :en
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
