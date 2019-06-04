@@ -1,13 +1,13 @@
-<p>Тест: <%= @test.title %></p>
+<p><%= t('.test') %>: <%= @test.title %></p>
   <% if !@questions.size.zero? %>
-  <p><%= create_new_question_link %></p>
-    <p>Вопросы теста:</p>
+  <p><%= create_new_question_link(t('.new_question')) %></p>
+    <p><%= t('.questions') %></p>
     <table>
       <%= render @questions %>
       <% #= render partial: 'questions/question', collection: @questions %>
     </table>
   <% else %>
-    <p>Пока в этот тесте нет вопросов</p>
-    <p><%= create_new_question_link %></p>
+    <p><%= t('.empty') %></p>
+    <p><%= create_new_question_link(t('.new_question')) %></p>
   <% end %>
-<p><%= link_to 'Назад', admin_tests_path %></p>
+<p><%= link_to t('.back'), admin_tests_path %></p>

@@ -1,5 +1,5 @@
 <tr>
   <td><%= link_to question.body, admin_question_path(question) %></td>
-  <td><%= link_to 'Изменить', edit_admin_question_path(question) %></td>
-  <td><%= link_to 'Удалить', admin_question_path(question), method: :delete, data: {confirm: "Удалить вопрос?"} %></td>
+  <td><%= link_to t('.edit'), edit_admin_question_path(question) %></td>
+  <td><%= link_to t('.delete'), admin_question_path(question), method: :delete, data: {confirm: t('.del_confirm')} %></td>
 </tr>

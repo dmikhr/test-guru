@@ -13,7 +13,7 @@ class User < ApplicationRecord
           :recoverable,
           :rememberable,
           :trackable,
-          :validatable,
+          :validatable
           :confirmable
 
   def passed_tests_by_level(level)
