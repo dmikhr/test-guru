@@ -10,7 +10,8 @@ module ApplicationHelper
 
   # хэлпер для flash сообщений с bootstrap
   def show_flash_message(type)
-    content_tag :div, flash[type], class: "#{type.to_s} alert-primary"
+    bootstrap_style_postfix = { alert: 'primary', notice: 'info', error: 'danger' }
+    content_tag :div, flash[type], class: "alert alert-#{bootstrap_style_postfix[type.to_sym]}"
   end
 
   def show_user_name
