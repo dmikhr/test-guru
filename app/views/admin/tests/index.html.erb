@@ -1,8 +1,8 @@
-<h3>Доступные тесты:</h3>
-<p><%= link_to 'Создать новый тест', new_admin_test_path %></p>
+<h3><%= t('tests.index.header') %></h3>
+<p><%= link_to t('.new_test'), new_admin_test_path %></p>
 <table>
   <tr>
-    <th>Название теста</th><th>Категория</th><th>Уровень</th><th>Кол-во вопросов</th><th colspan="2">Действия</th>
+    <th><%= t('tests.index.name') %></th><th><%= t('tests.index.category') %></th><th><%= t('tests.index.level') %></th><th><%= t('tests.index.questions_num') %></th><th colspan="2"><%= t('tests.index.actions') %></th>
   </tr>
   <%= render @tests %>
 </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin Panel | TestGuru</title>
+    <title><%= t('.panel') %> |<%= t('layouts.application.project_name') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <h1><%= link_to 'Проект TestGuru', root_path %></h1>
+    <h1><%= link_to t('layouts.application.project_name'), root_path %></h1>
     <%= render 'admin/nav' %>
     <%= render 'shared/flash' %>
     <%= yield %>

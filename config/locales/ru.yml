@@ -1,0 +1,91 @@
+ru:
+  hello: "Привет мир"
+
+  layouts:
+    application:
+      project_name: "Гуру Тестов"
+      greeting: "Привет"
+      guru: "Гуру"
+      logout: "Выход"
+      login: "Войти"
+      register: "Регистрация"
+    admin:
+      panel: "Панель администратора"
+
+  helpers:
+    # перевод для подсказки в списке категорий
+    select:
+      prompt: "Выберите из списка"
+    submit:
+      test:
+        create: "Создать тест"
+        update: "Обновить тест"
+    label:
+      test:
+        title: "Заголовок"
+        level: "Уровень"
+        category_id: "Категория"
+
+  shared:
+    display_errors:
+      header:
+        few: "Обнаружено %{count} ошибки"
+        many: "Обнаружено %{count} ошибок"
+        one: "Обнаружена %{count} ошибка"
+        other: "Обнаружено %{count} ошибки"
+
+  tests:
+    index:
+      header: "Доступные тесты"
+      name: "Название"
+      category: "Категория"
+      level: "Уровень"
+      questions_num: "Вопросов"
+      actions: "Действия"
+    test:
+      begin: "Пройти"
+
+  test_passages:
+    show:
+      current_test: "Вы проходите тест %{title}"
+      current_question: "Вопрос %{current_question_num} из %{total_questions_in_test}"
+      next_question: "Следующий вопрос"
+    result:
+      header: "Тест %{title} успешно завершён!"
+      correct_answers: "Правильных ответов %{correct_questions} из %{total_questions_in_test}"
+      percentage_correct_answers: "Процент правильных ответов"
+      success: "Тест успешно завершен"
+      fail: "Тест не пройден"
+    back_link:
+      link: "Выбрать другой тест"
+
+  admin:
+    questions:
+      question:
+        edit: "Изменить"
+        delete: "Удалить"
+        del_confirm: "Удалить вопрос?"
+    tests:
+      back_link:
+        link: "Назад"
+      create:
+        success: "Тест был успешно создан"
+      index:
+        new_test: "Создать тест"
+      form:
+        edit_title: "Редактировать тест"
+        new_title: "Новый тест"
+      test:
+        change: "Изменить"
+        delete: "Удалить"
+        del_confirm: "Удалить тест %{title}?"
+      show:
+        test: "Тест"
+        questions: "Список вопросов"
+        empty: "В этом тесте еще нет вопросов"
+        back: "Назад"
+        new_question: "Создать новый вопрос"
+
+  tests_mailer:
+    completed_test:
+      subject: "Вы только что завершили тест на TestGuru"

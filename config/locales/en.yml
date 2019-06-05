@@ -1,33 +1,88 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+
+  layouts:
+    application:
+      project_name: "TestGuru"
+      greeting: "Welcome"
+      guru: "Guru"
+      logout: "Logout"
+      login: "Log In"
+      register: "Register"
+    admin:
+      panel: "Admin Panel"
+
+  helpers:
+    select:
+      prompt: "Select option"
+    submit:
+      test:
+        create: "Create test"
+        update: "Update test"
+    label:
+      test:
+        title: "Title"
+        level: "Level"
+        category_id: "Category"
+
+  shared:
+    display_errors:
+      header:
+        one: "%{count} error detected"
+        other: "%{count} errors detected"
+
+  tests:
+    index:
+      header: "Available Tests"
+      name: "Name"
+      category: "Category"
+      level: "Level"
+      questions_num: "Questions"
+      actions: "Actions"
+    test:
+      begin: "Begin"
+
+  test_passages:
+    show:
+      current_test: "You're taking the test %{title}"
+      current_question: "Question %{current_question_num} of %{total_questions_in_test}"
+      next_question: "Next question"
+    result:
+      header: "Test %{title} was successfully completed!"
+      correct_answers: "Correct answers %{correct_questions} of %{total_questions_in_test}"
+      percentage_correct_answers: "Percentage of correct answers"
+      success: "Test has been completed successfully"
+      fail: "Test failed"
+    back_link:
+      link: "Back to tests"
+
+  admin:
+    questions:
+      question:
+        edit: "Edit"
+        delete: "Delete"
+        del_confirm: "Delete question?"
+    tests:
+      back_link:
+        link: "Back"
+      create:
+        success: "Test was successfully created"
+      index:
+        new_test: "Create new test"
+      form:
+        edit_title: "Edit test"
+        new_title: "New test"
+      test:
+        change: "Edit"
+        delete: "Delete"
+        del_confirm: "Delete test %{title}?"
+      show:
+        test: "Test"
+        questions: "Questions list"
+        empty: "There are no questions in this test yet"
+        back: "Back"
+        new_question: "Create new question"
+
+  tests_mailer:
+    completed_test:
+      subject: "You just completed the TestGuru test!"

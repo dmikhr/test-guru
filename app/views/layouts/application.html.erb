@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestGuru</title>
+    <title><%= t('.project_name') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,16 +10,16 @@
   </head>
 
   <body>
-    <h1><%= link_to 'Проект TestGuru', root_path %></h1>
+    <h1><%= link_to t('.project_name'), root_path %></h1>
     <% if user_signed_in? %>
-      <p class="nav user">Welcome, <b><%= show_user_name %></b> Guru
+      <p class="nav user"><%= t('.greeting') %>, <b><%= show_user_name %></b> <%= t('.guru') %>
         <% if current_user.admin? %>
-        | <%= link_to 'Админка', admin_tests_path %>
+        | <%= link_to t('layouts.admin.panel'), admin_tests_path %>
        <% end %>
-        | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+        | <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
       </p>
     <% else %>
-    <p class="nav user"><%= link_to 'Войти', new_user_session_path %> |  <%= link_to 'Регистрация', new_user_registration_path %></p>
+    <p class="nav user"><%= link_to t('.login'), new_user_session_path %> |  <%= link_to t('.register'), new_user_registration_path %></p>
     <% end %>
     <%= render 'shared/flash' %>
     <%= yield %>

@@ -1,4 +1,4 @@
-<h3><%= test_header %></h3>
+<h3><%= test_header(t('.new_title', title: @test.title), t('.edit_title', title: @test.title)) %></h3>
 
 <%= form_with model: [:admin, @test], local: true do |form| %>
 <%= render 'shared/display_errors', resource: @test  %>
@@ -15,9 +15,9 @@
 
 <div>
   <%= form.label :category_id %><br>
-  <%= form.collection_select :category_id, Category.all, :id, :title, prompt: 'Выберите категорию' %>
+  <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
 </div>
 
 <p><%= form.submit %></p>
 <% end %>
-<p><%= link_to 'Назад', admin_tests_path %></p>
+<%= render 'back_link' %>
