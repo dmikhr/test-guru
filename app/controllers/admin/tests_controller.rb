@@ -23,7 +23,7 @@ class Admin::TestsController < Admin::BaseController
   # редактирование вопроса
   def update
     if @test.update(test_params)
-      redirect_to admin_tests_path(@test)
+      redirect_to admin_tests_path
     else
       render :edit
     end
