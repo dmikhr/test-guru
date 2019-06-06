@@ -2,22 +2,23 @@
 
 <%= form_with model: [:admin, @test], local: true do |form| %>
 <%= render 'shared/display_errors', resource: @test  %>
-<div>
+<div class="form-group">
+<p>
   <%= form.label :title %><br>
   <%# при создании нового теста value будет пустым, при редактирование будет текущее значение %>
   <%= form.text_field :title, value: @test.title %>
-</div>
+</p>
 
-<div>
+<p>
   <%= form.label :level %><br>
   <%= form.number_field :level, value: @test.level %>
-</div>
+</p>
 
-<div>
+<p>
   <%= form.label :category_id %><br>
-  <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
-</div>
-
-<p><%= form.submit %></p>
+  <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true, class: "custom-select" %>
+</p>
+<p><%= form.submit class: "btn btn-primary" %></p>
 <% end %>
 <%= render 'back_link' %>
+</div>

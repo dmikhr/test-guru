@@ -10,7 +10,7 @@
     <%= b.label %>
   </p>
   <% end %>
-  <p><%= form.submit t('.next_question') %></p>
+  <p><%= form.submit t('.next_question'), class: "btn btn-primary" %></p>
   <p><%= t('.current_question', {current_question_num: @test_passage.current_question_num, total_questions_in_test: @test_passage.total_questions_in_test}) %></p>
   <%= render 'progress_bar' %>
 <% end %>

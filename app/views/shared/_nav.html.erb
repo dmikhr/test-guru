@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light bg-light">
+  <h1><%= link_to t('layouts.application.project_name'), root_path, class: 'navbar-brand' %></h1>
+  <span class="navbar-text" >
+    <% if user_signed_in? %>
+      <p class="nav user"><%= t('layouts.application.greeting') %>,&nbsp;<b><%= show_user_name %></b>&nbsp;<%= t('layouts.application.guru') %>
+        &nbsp;|&nbsp;<%= switch_language %>
+        <% if current_user.admin? %>
+        &nbsp;|&nbsp;<%= link_to t('layouts.admin.panel'), admin_tests_path %>
+       <% end %>
+        &nbsp;|&nbsp;<%= link_to t('layouts.application.logout'), destroy_user_session_path, method: :delete %>
+      </p>
+    <% else %>
+    <p class="nav user"><%= link_to t('layouts.application.login'), new_user_session_path %> |  <%= link_to t('layouts.application.register'), new_user_registration_path %></p>
+    <% end %>
+  </span>
+</nav>

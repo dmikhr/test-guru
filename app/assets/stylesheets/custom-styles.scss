@@ -1,0 +1,14 @@
+.navbar-admin {
+    background-color: #99ccff;
+}
+
+// цвета для таблиц
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #e6f2ff;
+ }
+
+ .table-striped>tbody>tr:nth-child(even)>td,
+ .table-striped>tbody>tr:nth-child(even)>th {
+    background-color: #cce6ff;
+  }
