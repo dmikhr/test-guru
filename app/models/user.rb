@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # доступ к тестам, созданным пользователем через user.tests_created
   # тесты относятся к классу Test, связь через внешний ключ creator_id
   has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
+  has_many :gists
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

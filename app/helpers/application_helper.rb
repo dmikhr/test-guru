@@ -28,4 +28,8 @@ module ApplicationHelper
     end
   end
 
+  def not_gists_page?
+    request.original_url.exclude?('/gists')
+  end
+
 end

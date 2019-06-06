@@ -1,0 +1,7 @@
+<h3>Gists</h3>
+<table class="table table-striped">
+  <tr>
+    <th><%= t('.question') %></th><th><%= t('.url') %></th><th><%= t('.user_email') %></th>
+  <%= render @gists %>
+</table>
+<%= link_to t('.back'), admin_tests_path %>

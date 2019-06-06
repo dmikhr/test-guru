@@ -78,3 +78,10 @@ answers = Answer.create!(
     {correct: false, body: 'Токио', question: questions[7]}
   ]
   )
+
+gists = Gist.create!(
+  [
+    {user: users[3], question: questions[5], url: 'https://gist.github.com/dmikhr/154034d53a156077ec77a63fd59b07ec'},
+    {user: users[2], question: questions[1], url: 'https://gist.github.com/dmikhr/01b66f014cd6dceff5dc88f0148cc78d'}
+  ]
+  )
