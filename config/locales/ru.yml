@@ -63,8 +63,9 @@ ru:
     back_link:
       link: "Выбрать другой тест"
     gist:
-      success: "Gist успешно сохранен: %{gist_url}"
+      success: "Gist успешно сохранен"
       failure: "Во время сохранения Gist возникла ошибка"
+      view_gist: "Посмотреть Gist на GitHub"
 
   admin:
     gists:

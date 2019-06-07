@@ -23,22 +23,19 @@ class TestPassagesController < ApplicationController
   end
 
   def gist
-    @result = GistQuestionService.new(@test_passage.current_question).call
-    flash_options = if gist_success?
+    service = GistQuestionService.new(@test_passage.current_question)
+    service.call
+    if service.success?
       # передаем объекты question и user вместо их id, т.к. есть ассоциации (аналогично seeds.rb)
-      Gist.create(question: @test_passage.current_question, user: current_user, url: @result[:html_url])
-      { notice: t('.success', gist_url: @result[:html_url]) }
+      Gist.create(question: @test_passage.current_question, user: current_user, url:  service.gist_url)
+      flash[:notice] = "#{t('.success')}: #{view_context.link_to(t('.view_gist'),  service.gist_url, target: "_blank")}"
     else
-      { alert: t('.failure') }
+      flash[:alert] = t('.failure', gist_url:  service.gist_url)
     end
-    redirect_to @test_passage, flash_options
+    redirect_to @test_passage
   end
 
   private
-
-  def gist_success?
-    @result[:html_url].present? && @result[:html_url].include?('https://gist.github.com/')
-  end
 
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])

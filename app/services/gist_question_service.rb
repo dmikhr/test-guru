@@ -7,7 +7,15 @@ class GistQuestionService
   end
 
   def call
-    @client.create_gist(gist_params)
+    @result = @client.create_gist(gist_params)
+  end
+
+  def gist_url
+    @result.html_url
+  end
+
+  def success?
+    gist_url.present? && gist_url.include?('https://gist.github.com/')
   end
 
   private
