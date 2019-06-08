@@ -43,6 +43,15 @@ gem 'rails-i18n', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 
+# NETWORKING
+gem 'faraday'
+
+# GITHUB
+gem "octokit", "~> 4.0"
+
+# SECURITY
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

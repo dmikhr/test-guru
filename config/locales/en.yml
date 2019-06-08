@@ -1,6 +1,9 @@
 en:
   hello: "Hello world"
 
+  services:
+    gist_question_service:
+      description: "A question from test %{title} (TestGuru)"
   layouts:
     application:
       project_name: "TestGuru"
@@ -47,6 +50,7 @@ en:
       current_test: "You're taking the test %{title}"
       current_question: "Question %{current_question_num} of %{total_questions_in_test}"
       next_question: "Next question"
+      gist_question: "Save as gist"
     result:
       header: "Test %{title} was successfully completed!"
       correct_answers: "Correct answers %{correct_questions} of %{total_questions_in_test}"
@@ -55,8 +59,18 @@ en:
       fail: "Test failed"
     back_link:
       link: "Back to tests"
+    gist:
+      success: "Gist was successfully created"
+      failure: "An error occurred while saving Gist"
+      view_gist: "View Gist on GitHub"
 
   admin:
+    gists:
+      index:
+        question: "Question"
+        url: "URL"
+        user_email: "User's email"
+        back: "Back"
     questions:
       question:
         edit: "Edit"
