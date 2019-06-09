@@ -2,7 +2,15 @@
 <p><%= button_to t('.new_test'), new_admin_test_path, class: "btn btn-success", method: :get %></p>
 <table class="table table-striped">
   <tr>
-    <th><%= t('tests.index.name') %></th><th><%= t('tests.index.category') %></th><th><%= t('tests.index.level') %></th><th><%= t('tests.index.questions_num') %></th><th colspan="2"><%= t('tests.index.actions') %></th>
+    <th class="sort-by-title pointer">
+      <%= t('tests.index.name') %>
+      <%= octicon 'arrow-up', class: 'hide' %>
+      <%= octicon "arrow-down", class: 'hide' %>
+    </th>
+    <th><%= t('tests.index.category') %></th>
+    <th><%= t('tests.index.level') %></th>
+    <th><%= t('tests.index.questions_num') %></th>
+    <th colspan="2"><%= t('tests.index.actions') %></th>
   </tr>
   <%= render @tests %>
 </table>

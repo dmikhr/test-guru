@@ -1,7 +1,15 @@
 <h3><%= t('.header') %></h3>
 <table class="table table-striped">
-  <tr>
-    <th><%= t('.name') %></th><th><%= t('.category') %></th><th><%= t('.level') %></th><th><%= t('.questions_num') %></th><th><%= t('.actions') %></th>
+  <tr class="sort-by-title pointer">
+    <th>
+      <%= t('.name') %>
+      <%= octicon 'arrow-up', class: 'hide' %>
+      <%= octicon "arrow-down", class: 'hide' %>
+    </th>
+    <th><%= t('.category') %></th>
+    <th><%= t('.level') %></th>
+    <th><%= t('.questions_num') %></th>
+    <th><%= t('.actions') %></th>
   </tr>
   <%= render @tests %>
 </table>
