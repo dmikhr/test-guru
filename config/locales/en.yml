@@ -77,6 +77,8 @@ en:
         delete: "Delete"
         del_confirm: "Delete question?"
     tests:
+      form_inline:
+        submit: "OK"
       back_link:
         link: "Back"
       create:

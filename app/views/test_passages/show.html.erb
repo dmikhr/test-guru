@@ -13,5 +13,5 @@
   <p><%= link_to t('.gist_question'), gist_test_passage_path(@test_passage), method: :post %></p>
   <p><%= form.submit t('.next_question'), class: "btn btn-primary" %></p>
   <p><%= t('.current_question', {current_question_num: @test_passage.current_question_num, total_questions_in_test: @test_passage.total_questions_in_test}) %></p>
-  <%= render 'progress_bar' %>
+  <%= show_progress_bar %>
 <% end %>
