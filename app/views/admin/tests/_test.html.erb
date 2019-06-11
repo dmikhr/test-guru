@@ -1,8 +1,15 @@
 <tr>
-  <td><%= link_to test.title, admin_test_path(test) %></td>
-  <td><%= test.category.title %></td>
-  <td><%= test.level %></td>
-  <td><%= test.questions.size %></td>
-  <td><%= button_to t('.change'), edit_admin_test_path(test), class: "btn btn-success", method: :get %></td>
-  <td><%= button_to t('.delete'), admin_test_path(test), class: "btn btn-danger", method: :delete, data: {confirm: t('.del_confirm', title: test.title)} %></td>
+  <td class="align-middle">
+    <%= link_to test.title, admin_test_path(test), class: 'test-title', data: { test_id: test.id } %>
+    <!-- доступ к быстрому редактированию заголовка через octicons -->
+    <%= link_to href: edit_admin_test_path(test) do %>
+      <%= octicon 'pencil', class: 'form-inline-edit', data: { test_id: test.id } %>
+    <% end %>
+    <%= render 'form_inline', test: test == @test ? @test : test %>
+  </td>
+  <td class="align-middle"><%= test.category.title %></td>
+  <td class="align-middle"><%= test.level %></td>
+  <td class="align-middle"><%= test.questions.size %></td>
+  <td class="align-middle"><%= button_to t('.change'), edit_admin_test_path(test), class: "btn btn-primary", method: :get %></td>
+  <td class="align-middle"><%= button_to t('.delete'), admin_test_path(test), class: "btn btn-danger", method: :delete, data: {confirm: t('.del_confirm', title: test.title)} %></td>
 </tr>

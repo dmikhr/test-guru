@@ -80,6 +80,8 @@ ru:
         delete: "Удалить"
         del_confirm: "Удалить вопрос?"
     tests:
+      form_inline:
+        submit: "OK"
       back_link:
         link: "Назад"
       create:
