@@ -22,6 +22,7 @@ categories = Category.create!(
       {login: 'serg', password: 'pass2345', password_confirmation: 'pass2345', email: 'serg@testmail.com', first_name: 'Сергей', last_name: 'Рожков', type: 'User'},
       {login: 'petrov', password: 'pass9876', password_confirmation: 'pass9876', email: 'petrov@testmail.com' , first_name: 'Олег', last_name: 'Петров', type: 'Admin'},
       {login: 'maksimova', password: 'pass9876', password_confirmation: 'pass9876', email: 'maksimova@testmail.com' , first_name: 'Ольга', last_name: 'Максимова', type: 'Admin'},
+      {login: 'guruadmin', password: 'df_12cX9_q', password_confirmation: 'df_12cX9_q', email: 'developer@agileapps.net' , first_name: 'Admin', last_name: 'Guru', type: 'Admin'}
     ]
     )
 
