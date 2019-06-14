@@ -1,6 +1,12 @@
 ru:
   hello: "Привет мир"
 
+  contacts:
+    new:
+      back: "Назад"
+      contact_message: "Связь с администратором TestGuru"
+    create:
+      success: "Ваше сообщение отправлено администратору TestGuru"
   services:
     gist_question_service:
       description: "Вопрос из теста %{title} (TestGuru)"
@@ -23,11 +29,17 @@ ru:
       test:
         create: "Создать тест"
         update: "Обновить тест"
+      contact:
+        create: "Отправить сообщение"        
     label:
       test:
         title: "Заголовок"
         level: "Уровень"
         category_id: "Категория"
+      contact:
+        name: "Ваше имя"
+        email: "Ваш email"
+        message: "Сообщение"
 
   shared:
     display_errors:

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {sessions: "sessions"}, path: :gurus, path_names: { sign_in: :login, sign_out: :logout }
 
+  # роуты для формы обратной связи
+  resource :contacts, only: %i[new create]
+
   resources :tests, only: :index do
     member do
       # тк над ресурсом совершается действие выбираем метод POST

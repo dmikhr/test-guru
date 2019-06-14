@@ -6,4 +6,10 @@ class TestsMailer < ApplicationMailer
 
     mail to: @user.email
   end
+
+  # тестирование отправки сообщений в dev среде
+  # TestsMailer.test_email(email).deliver_now
+  def test_email(email)
+    mail to: email
+  end
 end
