@@ -8,7 +8,9 @@ en:
         title: "Title"
         category: "Category"
         creator: "Author"
+        time_limit: "Timer"
 
     errors:
       messages:
         blank: "can't be blank"
+        limit_exceed: "limit exceed"

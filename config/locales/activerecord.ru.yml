@@ -8,7 +8,9 @@ ru:
         title: "Название"
         category: "Категория"
         creator: "Автор"
+        time_limit: "Таймер"
 
     errors:
       messages:
         blank: "не может быть пустым"
+        limit_exceed: "задан больше допустимого времени"

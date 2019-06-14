@@ -43,7 +43,6 @@ class Admin::TestsController < Admin::BaseController
   # обработка POST запроса от формы создания теста
   # создание теста
   def create
-    # @test = Test.new(test_params)
     # создаем тест на от класса Test, а через ассоциацию из модели User
     # чтобы автоматически установилось авторство теста
     @test = current_user.tests_created.new(test_params)
@@ -67,12 +66,21 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def test_params
-    # params.require(:test).permit(:title, :level, :category_id, :creator_id)
-    params.require(:test).permit(:title, :level, :category_id)
+    main_params = params.require(:test).permit(:title, :level, :category_id)
+    time_params = params.require(:date).permit(:minute, :second)
+    # переводим минуты и секунды из формы в секунды
+    # в бд время хранится в секундах, чтобы не было привязки данных к интерфейсу
+    # в интерфейсе возможно потребуется добавить поле часы или оставить только секунды, при этом схему бд менять будет не нужно
+    main_params[:time_limit] = set_time_in_sec(time_params)
+    main_params
   end
 
   def set_test
     @test = Test.find(params[:id])
+  end
+
+  def set_time_in_sec(time_params)
+    time_params[:minute].to_i * 60 + time_params[:second].to_i
   end
 
   def rescue_with_test_not_found

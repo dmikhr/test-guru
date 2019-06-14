@@ -29,12 +29,13 @@ en:
         create: "Create test"
         update: "Update test"
       contact:
-        create: "Send message"    
+        create: "Send message"
     label:
       test:
         title: "Title"
         level: "Level"
         category_id: "Category"
+        time_limit: "Timer (min:sec) Set to 00:00 for deactivation"
       contact:
         name: "Your name"
         email: "Your email"
@@ -69,6 +70,7 @@ en:
       percentage_correct_answers: "Percentage of correct answers"
       success: "Test has been completed successfully"
       fail: "Test failed"
+      fail_time: "Failed to complete the test in time"
     back_link:
       link: "Back to tests"
     gist:

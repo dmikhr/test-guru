@@ -21,4 +21,6 @@ class Test < ApplicationRecord
   # Уровень Теста может быть только положительным целым числом
   # использовал greater_than_or_equal_to вместо greater_than т.к. scope easy включает тесты от 0
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  # ограничим задание максимального времени на прохождение теста 20 минутами
+  validates :time_limit, numericality: { only_integer: true, less_than_or_equal_to: 1200, message: :limit_exceed }
 end
