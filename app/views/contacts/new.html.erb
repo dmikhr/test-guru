@@ -1,6 +1,6 @@
 <h3><%= t('.contact_message') %></h3>
 
-<%= form_with model: @contact, local: true, url: contact_path, method: 'POST' do |form| %>
+<%= form_with model: @contact, local: true do |form| %>
 <%= render 'shared/display_errors', resource: @contact  %>
 <div class="form-group">
 <p>
