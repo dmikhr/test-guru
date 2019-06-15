@@ -20,7 +20,7 @@ function startTimer(timer, timeLeft) {
       // останавливаем таймер
       clearInterval(counter);
       // программно нажимаем на кнопку для завершения теста
-      document.getElementById('next-question').click();
+      document.getElementById("test-passage-form").submit();
     }
     timeLeft--;
   }, 1000);

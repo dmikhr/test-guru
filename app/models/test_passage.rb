@@ -37,7 +37,11 @@ class TestPassage < ApplicationRecord
   end
 
   def no_time_left?
-    (test.time_limit - (Time.now - self.created_at)).to_i <= 0
+    (test.time_limit - (Time.now - created_at)).to_i <= 0
+  end
+
+  def progress_percentage
+    (current_question_num - 1) / total_questions_in_test.to_f * 100
   end
 
   private
