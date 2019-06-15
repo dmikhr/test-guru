@@ -1,9 +1,12 @@
 <h1><%= t('.header', title: @test_passage.test.title) %></h1>
 <div>
   <%= t('.correct_answers', {correct_questions: @test_passage.correct_questions, total_questions_in_test: @test_passage.total_questions_in_test}) %><br>
-  <% if @test_passage.passed? %>
+  <% if @test_passage.passed? && !@test_passage.no_time_left? %>
     <%= t('.percentage_correct_answers') %>: <mark class="success"><%= @test_passage.correct_questions_percentage %>%</mark><br>
     <%= t('.success') %>!
+    <% elsif @test_passage.passed? && @test_passage.no_time_left? %>
+      <%= t('.percentage_correct_answers') %>: <mark class="fail"><%= @test_passage.correct_questions_percentage %>%</mark><br>
+      <%= t('.fail_time') %> :(
   <% else %>
     <%= t('.percentage_correct_answers') %>: <mark class="fail"><%= @test_passage.correct_questions_percentage %>%</mark><br>
     <%= t('.fail') %> :(

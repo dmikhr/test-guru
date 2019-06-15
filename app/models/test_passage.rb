@@ -13,7 +13,7 @@ class TestPassage < ApplicationRecord
   end
 
   def completed?
-    current_question.nil?
+    current_question.nil? || no_time_left?
   end
 
   def passed?
@@ -34,6 +34,14 @@ class TestPassage < ApplicationRecord
 
   def correct_questions_percentage
     ((correct_questions / total_questions_in_test.to_f) * 100).round
+  end
+
+  def no_time_left?
+    (test.time_limit - (Time.now - created_at)).to_i <= 0
+  end
+
+  def progress_percentage
+    (current_question_num - 1) / total_questions_in_test.to_f * 100
   end
 
   private
@@ -57,4 +65,5 @@ class TestPassage < ApplicationRecord
   def before_validation_set_current_question
     self.current_question = next_question
   end
+
 end

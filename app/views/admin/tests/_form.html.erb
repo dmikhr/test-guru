@@ -18,6 +18,12 @@
   <%= form.label :category_id %><br>
   <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true, class: "custom-select" %>
 </p>
+
+<p>
+  <%= form.label :time_limit %><br>
+  <%= select_minute(timer_minutes) %> : <%= select_second(timer_seconds) %>
+</p>
+
 <p><%= form.submit class: "btn btn-primary" %></p>
 <% end %>
 <%= render 'back_link' %>

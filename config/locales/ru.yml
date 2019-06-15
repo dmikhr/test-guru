@@ -30,12 +30,13 @@ ru:
         create: "Создать тест"
         update: "Обновить тест"
       contact:
-        create: "Отправить сообщение"        
+        create: "Отправить сообщение"
     label:
       test:
         title: "Заголовок"
         level: "Уровень"
         category_id: "Категория"
+        time_limit: "Таймер (мин:сек). Чтобы отключить, установите в 00:00"
       contact:
         name: "Ваше имя"
         email: "Ваш email"
@@ -72,6 +73,7 @@ ru:
       percentage_correct_answers: "Процент правильных ответов"
       success: "Тест успешно завершен"
       fail: "Тест не пройден"
+      fail_time: "Не успели пройти тест за отведенное время"
     back_link:
       link: "Выбрать другой тест"
     gist:

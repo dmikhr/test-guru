@@ -29,10 +29,10 @@ categories = Category.create!(
 # добавил больше тестов для тестирования scope-методов выбора тестов по сложности
 tests = Test.create!(
   [
-    {title: 'Английский уровень Beginner', level: 0, category: categories[0], creator: users[3]},
-    {title: 'Английский уровень Pre-Intermediate', level: 1, category: categories[0], creator: users[3]},
-    {title: 'География для школьников', level: 0, category: categories[1], creator: users[3]},
-    {title: 'География для студентов ВУЗов', level: 3, category: categories[1], creator: users[3]},
+    {title: 'Английский уровень Beginner', level: 0, category: categories[0], creator: users[3], time_limit: 90},
+    {title: 'Английский уровень Pre-Intermediate', level: 1, category: categories[0], creator: users[3], time_limit: 160},
+    {title: 'География для школьников', level: 0, category: categories[1], creator: users[3], time_limit: 75},
+    {title: 'География для студентов ВУЗов', level: 3, category: categories[1], creator: users[3], time_limit: 105},
     {title: 'Теория алгоритмов', level: 2, category: categories[2], creator: users[4]},
     {title: 'Цифровая обработка сигналов', level: 4, category: categories[2], creator: users[4]},
     {title: 'Механика сплошных сред', level: 7, category: categories[3], creator: users[4]},
