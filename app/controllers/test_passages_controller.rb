@@ -13,8 +13,14 @@ class TestPassagesController < ApplicationController
   def update
     @test_passage.accept!(params[:answer_ids])
     if @test_passage.completed?
+      badges = BadgeManagementService.new(@test_passage).call
       TestsMailer.completed_test(@test_passage).deliver_now
-      redirect_to result_test_passage_path(@test_passage)
+      if badges
+        badges_achieved = badges.pluck(:name).join(', ')
+        redirect_to result_test_passage_path(@test_passage), notice: "New badges achieved: #{badges_achieved}"
+      else
+        redirect_to result_test_passage_path(@test_passage)
+      end
     else
       # когда пользователь нажимает 'далее' - заново рендерим форму теста
       # с новым вопросом

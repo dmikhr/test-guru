@@ -7,6 +7,7 @@
    &nbsp;|&nbsp;<%= switch_language %>
    <% if not_gists_page? %>
    &nbsp;|&nbsp;<%= link_to 'Gists', admin_gists_path %>
+   &nbsp;|&nbsp;<%= link_to 'Badges', admin_badges_path %>
    <% end %>
    &nbsp;|&nbsp;<%=  link_to t('layouts.application.logout'), destroy_user_session_path, method: :delete %>
   </div>

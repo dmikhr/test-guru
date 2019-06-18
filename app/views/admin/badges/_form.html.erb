@@ -1,0 +1,45 @@
+<h3>Manage badge</h3>
+
+<%= form_with model: [:admin, @badge], local: true do |form| %>
+<%= render 'shared/display_errors_badges', resource: @badge  %>
+<div class="form-group">
+<p>
+  <%= form.label :name %><br>
+  <%# при создании нового теста value будет пустым, при редактирование будет текущее значение %>
+  <%= form.text_field :name, value: @badge.name %>
+</p>
+
+<p>
+  <%= form.label :description %><br>
+  <%= form.text_area :description, rows: 7, cols: 60, value: @badge.description %>
+</p>
+
+<p>
+  <%= form.label :image_path %><br>
+  <%= form.text_field :image_path, value: @badge.image_path %>
+</p>
+
+<p>
+  <%= form.label :category_id %><br>
+  <%= form.collection_select :category_id, Category.all, :id, :title, select_category ? {selected: select_category, prompt: 'Не используется'} : {prompt: 'Не используется'}, class: "custom-select" %>
+</p>
+
+<p>
+  <%= form.label :test_id %><br>
+  <%= form.collection_select :test_id, Test.all, :id, :title, select_test ? {selected: select_test, prompt: 'Не используется'} : {prompt: 'Не используется'}, class: "custom-select" %>
+</p>
+
+<p>
+  <%= form.label :level %><br>
+  <%= form.number_field :level, value: level_value, class: "custom-select" %>
+</p>
+
+<p>
+  <%= form.label :first_attempt %><br>
+  <%= form.check_box :first_attempt, checked: select_check_box %>
+</p>
+
+<p><%= form.submit class: "btn btn-primary" %></p>
+<% end %>
+<%= render 'back_link' %>
+</div>

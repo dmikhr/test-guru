@@ -11,15 +11,15 @@ default: &default
 
 development:
   <<: *default
-  database: test_guru_development
+  database: test_guru_development_badges
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: test_guru_test
+  database: test_guru_test_badges
 
 production:
   <<: *default
-  database: test_guru_production
+  database: test_guru_production_badges

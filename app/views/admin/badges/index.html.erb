@@ -1,0 +1,11 @@
+<h3><%= t('tests.index.header') %></h3>
+<p><%= button_to 'New badge', new_admin_badge_path, class: "btn btn-success", method: :get %></p>
+  <%= render 'shared/display_errors', resource: @badge %>
+<table class="table table-striped">
+  <tr>
+    <th>Badge rule</th>
+    <th colspan="2"><%= t('tests.index.actions') %></th>
+  </tr>
+  <%= render @badges %>
+</table>
+<p><%= link_to 'Back', admin_tests_path %></p>

@@ -86,3 +86,63 @@ gists = Gist.create!(
     {user: users[2], question: questions[1], url: 'https://gist.github.com/dmikhr/01b66f014cd6dceff5dc88f0148cc78d'}
   ]
   )
+
+test_passage = TestPassage.create!(
+  [
+    # для тестирования через Rails консоль
+    # сценарий: прохождение всех тестов из категории с 1 раза
+    {user: users[0], test: tests[0], passed: true},
+    {user: users[0], test: tests[1], passed: true},
+    # сценарий: прохождение всех тестов из категории
+    {user: users[1], test: tests[0], passed: true},
+    {user: users[1], test: tests[1], passed: false},
+    {user: users[1], test: tests[1], passed: true},
+    # сценарий: прохождение всех тестов уровня 0
+    {user: users[0], test: tests[0], passed: true},
+    {user: users[0], test: tests[2], passed: true},
+    # сценарий: прохождение теста
+    {user: users[2], test: tests[0], passed: false},
+    {user: users[2], test: tests[0], passed: false},
+    {user: users[2], test: tests[0], passed: true},
+    # сценарий: прохождение теста с 1 раза - fail
+    {user: users[0], test: tests[3], passed: false},
+    {user: users[0], test: tests[3], passed: true},
+    # сценарий: прохождение теста с 1 раза - success
+    {user: users[0], test: tests[4], passed: true}
+  ]
+  )
+
+badges = Badge.create!(
+  [
+    {name: 'Начинающий', image_path: 'http://khramtsov.net/ror_images/badge1.png'},
+    {name: 'Первый', image_path: 'http://khramtsov.net/ror_images/badge2.png'},
+    {name: 'Чемпион', image_path: 'http://khramtsov.net/ror_images/badge3.png'},
+    {name: 'Бейдж 4', image_path: 'http://khramtsov.net/ror_images/badge4.png'},
+    {name: 'Бейдж 5', image_path: 'http://khramtsov.net/ror_images/badge5.png'}
+  ]
+  )
+
+badge_rules = BadgeRule.create!(
+  [
+    # прохождение всех тестов из категории с 1 раза
+    {badge: badges[0], category: categories[0], first_attempt: true},
+    # прохождение всех тестов из категории
+    {badge: badges[1], category: categories[0]},
+    # прохождение всех тестов уровня 0
+    {badge: badges[2], level: 0},
+    # прохождение теста
+    {badge: badges[3], test: tests[0]},
+    # прохождение теста с 1 раза
+    {badge: badges[4], test: tests[0], first_attempt: true}
+  ]
+  )
+
+user_badges = UserBadge.create!(
+  [
+    {user: users[0], badge: badges[0]},
+    {user: users[0], badge: badges[1]},
+    {user: users[0], badge: badges[2]},
+    {user: users[1], badge: badges[0]},
+    {user: users[2], badge: badges[1]}
+  ]
+  )

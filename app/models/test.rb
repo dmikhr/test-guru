@@ -6,11 +6,14 @@ class Test < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :test_passages, dependent: :destroy
   has_many :users, through: :test_passages
+  has_many :badge_rules, dependent: :destroy
 
   scope :easy, -> { where(level: 0..1) }
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY) }
 
+  scope :tests_by_category_id, -> (category_id) { where(category_id: category_id) }
+  scope :tests_by_level, -> (level) { where(level: level) }
   # scope методы заменяющие метод модели из предыдущего задания
   scope :category_by_title, -> (category) { Category.find_by(title: category) }
   scope :tests_by_category_desc, -> (category)  { where(category_id: category_by_title(category)).order(title: :desc) }

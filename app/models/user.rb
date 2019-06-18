@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :tests_created, class_name: 'Test', foreign_key: :creator_id
   has_many :gists, dependent: :destroy
 
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
