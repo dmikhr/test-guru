@@ -1,0 +1,14 @@
+<h3>User profile</h3>
+<p>Name: <%= @user.full_name %></p>
+<p>Badges</p>
+<table class="table">
+  <tr>
+      <% @badges.each do |badge| %>
+    <th>
+      <%= image_tag(badge.image_path, size: "100x100") %><br>
+      <%= badge.name %>
+    </th>
+    <% end %>
+  </tr>
+</table>
+<%= link_to 'Back', admin_users_path %>

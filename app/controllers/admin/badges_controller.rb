@@ -7,7 +7,7 @@ class Admin::BadgesController < Admin::BaseController
   def edit; end
 
   def update
-    if @badge.update(badge_params) && @badge.badge_rules.update(badge_rules_params)
+    if @badge.update(badge_params)
       redirect_to admin_badges_path, notice: 'Badge updated'
     else
       render :edit
@@ -16,14 +16,12 @@ class Admin::BadgesController < Admin::BaseController
 
   def new
     @badge = Badge.new
-    @badge_rules = @badge.badge_rules.new
   end
 
   def create
     # byebug
     @badge = Badge.new(badge_params)
-    @badge_rules = @badge.badge_rules.new(badge_rules_params)
-    if @badge.save && @badge_rules.save
+    if @badge.save
       redirect_to admin_badges_path, notice: 'Badge saved'
     else
       render :new
@@ -38,11 +36,7 @@ class Admin::BadgesController < Admin::BaseController
   private
 
   def badge_params
-    params.require(:badge).permit(:name, :description, :image_path)
-  end
-
-  def badge_rules_params
-    params.require(:badge).permit(:category_id, :test_id, :level, :first_attempt)
+    params.require(:badge).permit(:name, :description, :image_path, :rule, :value)
   end
 
   def set_badges

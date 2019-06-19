@@ -89,10 +89,6 @@ gists = Gist.create!(
 
 test_passage = TestPassage.create!(
   [
-    # для тестирования через Rails консоль
-    # сценарий: прохождение всех тестов из категории с 1 раза
-    {user: users[0], test: tests[0], passed: true},
-    {user: users[0], test: tests[1], passed: true},
     # сценарий: прохождение всех тестов из категории
     {user: users[1], test: tests[0], passed: true},
     {user: users[1], test: tests[1], passed: false},
@@ -114,26 +110,11 @@ test_passage = TestPassage.create!(
 
 badges = Badge.create!(
   [
-    {name: 'Начинающий', image_path: 'http://khramtsov.net/ror_images/badge1.png'},
-    {name: 'Первый', image_path: 'http://khramtsov.net/ror_images/badge2.png'},
-    {name: 'Чемпион', image_path: 'http://khramtsov.net/ror_images/badge3.png'},
-    {name: 'Бейдж 4', image_path: 'http://khramtsov.net/ror_images/badge4.png'},
-    {name: 'Бейдж 5', image_path: 'http://khramtsov.net/ror_images/badge5.png'}
-  ]
-  )
-
-badge_rules = BadgeRule.create!(
-  [
-    # прохождение всех тестов из категории с 1 раза
-    {badge: badges[0], category: categories[0], first_attempt: true},
-    # прохождение всех тестов из категории
-    {badge: badges[1], category: categories[0]},
-    # прохождение всех тестов уровня 0
-    {badge: badges[2], level: 0},
-    # прохождение теста
-    {badge: badges[3], test: tests[0]},
-    # прохождение теста с 1 раза
-    {badge: badges[4], test: tests[0], first_attempt: true}
+    {name: 'Начинающий', image_path: 'http://khramtsov.net/ror_images/badge1.png', rule: 'category', value: 1},
+    {name: 'Первый', image_path: 'http://khramtsov.net/ror_images/badge2.png', rule: 'category', value: 2},
+    {name: 'Чемпион', image_path: 'http://khramtsov.net/ror_images/badge3.png', rule: 'level', value: 0},
+    {name: 'Бейдж 4', image_path: 'http://khramtsov.net/ror_images/badge4.png', rule: 'test', value: 1},
+    {name: 'Бейдж 5', image_path: 'http://khramtsov.net/ror_images/badge5.png', rule: 'test_first', value: 4}
   ]
   )
 

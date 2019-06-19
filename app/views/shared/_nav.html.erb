@@ -4,7 +4,7 @@
     <% if user_signed_in? %>
       <p class="nav user"><%= t('layouts.application.greeting') %>,&nbsp;<b><%= show_user_name %></b>&nbsp;<%= t('layouts.application.guru') %>
         &nbsp;|&nbsp;<%= switch_language %>
-        &nbsp;|&nbsp;<%= link_to 'Badges', user_path(current_user) %>
+        &nbsp;|&nbsp;<%= link_to 'Badges', admin_user_path(current_user) %>
         <% if current_user.admin? %>
         &nbsp;|&nbsp;<%= link_to t('layouts.admin.panel'), admin_tests_path %>
        <% end %>

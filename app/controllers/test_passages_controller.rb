@@ -15,7 +15,8 @@ class TestPassagesController < ApplicationController
     if @test_passage.completed?
       badges = BadgeManagementService.new(@test_passage).call
       TestsMailer.completed_test(@test_passage).deliver_now
-      if badges
+      if badges.present?
+        current_user.badges << badges
         badges_achieved = badges.pluck(:name).join(', ')
         redirect_to result_test_passage_path(@test_passage), notice: "New badges achieved: #{badges_achieved}"
       else

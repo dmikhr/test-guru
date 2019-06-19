@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   # роуты для формы обратной связи
   resource :contacts, only: %i[new create]
 
-  # роуты для формы обратной связи
-  resources :users, only: %i[index show]
-
   resources :tests, only: :index do
     member do
       # тк над ресурсом совершается действие выбираем метод POST
@@ -35,6 +32,7 @@ Rails.application.routes.draw do
     # нужен только route для вывода списка gists - index
     resources :gists, only: :index
     resources :badges, except: :show
+    resources :users, only: %i[index show]
   end
 
 end
