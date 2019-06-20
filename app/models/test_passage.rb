@@ -5,10 +5,14 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_current_question
 
+  scope :passed_tests, -> { TestPassage.where(passed: true) }
+
   SUCCESS_THRESHOLD = 85
 
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids)
+    # passed = true если набрано достаточно баллов и тест закончен вовремя
+    self.passed = passed? && !no_time_left?
     save!
   end
 

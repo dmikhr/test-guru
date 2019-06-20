@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     end
     # нужен только route для вывода списка gists - index
     resources :gists, only: :index
+    resources :badges, except: :show
+    resources :users, only: %i[index show]
   end
 
 end

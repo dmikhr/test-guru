@@ -11,6 +11,8 @@ class Test < ApplicationRecord
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY) }
 
+  scope :tests_by_category_id, -> (category_id) { where(category_id: category_id) }
+  scope :tests_by_level, -> (level) { where(level: level) }
   # scope методы заменяющие метод модели из предыдущего задания
   scope :category_by_title, -> (category) { Category.find_by(title: category) }
   scope :tests_by_category_desc, -> (category)  { where(category_id: category_by_title(category)).order(title: :desc) }

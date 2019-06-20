@@ -1,0 +1,36 @@
+<h3>Manage badge</h3>
+
+<%= form_with model: [:admin, @badge], local: true do |form| %>
+<%= render 'shared/display_errors', resource: @badge  %>
+<div class="form-group">
+<p>
+  <%= form.label :name %><br>
+  <%# при создании нового теста value будет пустым, при редактирование будет текущее значение %>
+  <%= form.text_field :name, value: @badge.name %>
+</p>
+
+<p>
+  <%= form.label :description %><br>
+  <%= form.text_area :description, rows: 7, cols: 60, value: @badge.description %>
+</p>
+
+<p>
+  <%= form.label :image_path %><br>
+  <%= form.text_field :image_path, value: @badge.image_path %>
+</p>
+
+<p>
+  <%= form.label :rule %><br>
+  <!-- collection_select заменяется на select, т.к. теперь здесь отображается набор строк-констант, а не данные ActiveRecord -->
+  <%= form.select :rule, available_rules, class: "custom-select" %>
+</p>
+
+<p>
+  <%= form.label :value %><br>
+  <%= form.number_field :value, value: @badge.value, class: "custom-select" %>
+</p>
+
+<p><%= form.submit class: "btn btn-primary" %></p>
+<% end %>
+<%= render 'back_link' %>
+</div>

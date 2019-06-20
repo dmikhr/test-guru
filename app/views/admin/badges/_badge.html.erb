@@ -1,0 +1,5 @@
+<tr>
+  <td class="align-middle"><%= link_to badge.name, edit_admin_badge_path(badge), class: 'test-title', data: { badge_id: badge.id } %></td>
+  <td class="align-middle"><%= button_to 'Change', edit_admin_badge_path(badge), class: "btn btn-primary", method: :get %></td>
+  <td class="align-middle"><%= button_to 'Delete', admin_badge_path(badge), class: "btn btn-danger", method: :delete, data: {confirm: t('.del_confirm', title: badge.name)} %></td>
+</tr>

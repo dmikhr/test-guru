@@ -86,3 +86,44 @@ gists = Gist.create!(
     {user: users[2], question: questions[1], url: 'https://gist.github.com/dmikhr/01b66f014cd6dceff5dc88f0148cc78d'}
   ]
   )
+
+test_passage = TestPassage.create!(
+  [
+    # сценарий: прохождение всех тестов из категории
+    {user: users[1], test: tests[0], passed: true},
+    {user: users[1], test: tests[1], passed: false},
+    {user: users[1], test: tests[1], passed: true},
+    # сценарий: прохождение всех тестов уровня 0
+    {user: users[0], test: tests[0], passed: true},
+    {user: users[0], test: tests[2], passed: true},
+    # сценарий: прохождение теста
+    {user: users[2], test: tests[0], passed: false},
+    {user: users[2], test: tests[0], passed: false},
+    {user: users[2], test: tests[0], passed: true},
+    # сценарий: прохождение теста с 1 раза - fail
+    {user: users[0], test: tests[3], passed: false},
+    {user: users[0], test: tests[3], passed: true},
+    # сценарий: прохождение теста с 1 раза - success
+    {user: users[0], test: tests[4], passed: true}
+  ]
+  )
+
+badges = Badge.create!(
+  [
+    {name: 'Начинающий', image_path: 'http://khramtsov.net/ror_images/badge1.png', rule: 'category', value: 1},
+    {name: 'Первый', image_path: 'http://khramtsov.net/ror_images/badge2.png', rule: 'category', value: 2},
+    {name: 'Чемпион', image_path: 'http://khramtsov.net/ror_images/badge3.png', rule: 'level', value: 0},
+    {name: 'Бейдж 4', image_path: 'http://khramtsov.net/ror_images/badge4.png', rule: 'test', value: 1},
+    {name: 'Бейдж 5', image_path: 'http://khramtsov.net/ror_images/badge5.png', rule: 'test_first', value: 4}
+  ]
+  )
+
+user_badges = UserBadge.create!(
+  [
+    {user: users[0], badge: badges[0]},
+    {user: users[0], badge: badges[1]},
+    {user: users[0], badge: badges[2]},
+    {user: users[1], badge: badges[0]},
+    {user: users[2], badge: badges[1]}
+  ]
+  )
