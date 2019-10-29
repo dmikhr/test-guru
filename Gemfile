@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # AUTH
-gem 'devise', '~> 4.0'
+gem 'devise', '~> 4.7'
 
 # LOCALIZATION
 gem 'rails-i18n', '~> 5.0.0'
